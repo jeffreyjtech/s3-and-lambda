@@ -6,7 +6,6 @@ exports.handler = async (event) => {
     
     console.log(event.Records);
     
-    let bucketName = event.Records[0].s3.bucket.name;
     let imageKey = event.Records[0].s3.bucket.object.key;
     let imageSize = event.Records[0].s3.bucket.object.size;
     let imageLastUpdated = event.Records[0].eventTime;
@@ -15,13 +14,13 @@ exports.handler = async (event) => {
       imageSize,
       imageLastUpdated,
     }
-    let key = '';
-    
-    // let object = await s3.getObject({ Bucket: bucketName, Key: key }).promise();
 
-    // let json = JSON.parse(object.Body.toString());
+    let bucketName = event.Records[0].s3.bucket.name;
     
-    // console.log('Logging S3 json', json)
+    let object = await s3.getObject({ Bucket: bucketName, Key: 'images.json' }).promise();
+    let json = JSON.parse(object.Body.toString());
+    
+    console.log('Logging S3 json', json)
     
     const payload = {
         statusCode: 200,
