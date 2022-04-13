@@ -4,6 +4,8 @@ An AWS Lambda function for storing an image's metadata to S3. When an .jpg image
 
 Since the image metadata was never meant to store duplicates and it had to be stored as JSON (serializable data only), I decided to forgo the instructions to use an object array and instead I used an object-containing-objects. This resulted in much cleaner code which utilizes the spread operator and object literal behavior to avoid using any conditional logic.
 
+## [**Link to `images.json` on S3**](https://jjtech-images.s3.us-west-2.amazonaws.com/images.json)
+
 ## UML Diagram
 
 ![My S3 and Lambda Diagram](lab-16-uml.jpg)
